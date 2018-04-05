@@ -1,3 +1,3 @@
 yum update
-yum install python
+yum -y install python
 pip install redis
