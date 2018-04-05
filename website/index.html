@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Snakes!!</title>
+    </head>
+    <style>
+        * {
+            font-family:courier;
+        }
+        
+        #mainChessBoard {
+            border:1px solid black;
+            margin: 10px;
+            
+        }
+        div {
+            width:20px;
+            height:20px;
+            float:left;
+        }
+        li {
+            list-style-type:none
+        }
+    </style>
+    
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <div id='mainChessBoard'></div>
+                </td>
+                <td>
+                    <section>
+                        <section id='round'>Dd</section>
+                    </section>
+                    <section>
+                        <ul id='players'>
+                        </ul>
+                    </section>
+                </td>
+                <td>
+                    <section>
+                        <ul id='leaderboard'>
+                        </ul>
+                    </section>
+                </td>
+            </tr>
+        </table>
+        <section>
+                <a href="https://github.com/pierewoj">
+                    github.com/pierewoj
+                </a>
+        </section>
+        
+        <script>
+            function print_board() {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "board", false);
+                xhr.send(null);
+                board = JSON.parse(xhr.responseText)
+                square = 20;
+                board_node = document.getElementById("mainChessBoard")
+                while (board_node.firstChild) {
+                    board_node.removeChild(board_node.firstChild);
+                }
+                
+                board_node.style.width=board.width*square+'px';
+                board_node.style.height=board.height*square+'px';
+                for (var i=0; i< board.width * board.height; i++){
+                    board_node.appendChild(document.createElement("div"))
+                        .style.backgroundColor = board.square_colors[i];    
+                }
+                players_node = document.getElementById('players');
+                players_node.innerHTML = "";
+                for (var i in board.players) {
+                    player = board.players[i]
+                    players_node.innerHTML += '<li style="color: ' + player.color + '">' + player.id + '</li>';
+                }
+                leaderboard_node = document.getElementById('leaderboard');
+                leaderboard_node.innerHTML = "";
+                for (var i in board.leaderboard) {
+                    leader_obj = board.leaderboard[i]
+                    leaderboard_node.innerHTML += '<li>'+leader_obj.player_id +' '+leader_obj.score.toFixed(2)+ '</li>';
+                }
+                document.getElementById('round').innerHTML = 'round: ' + board.round + '/' + board.max_rounds;
+            }
+            window.setInterval(function(){
+                print_board()
+            }, 1000);
+        </script>
+    </body>
+</html>

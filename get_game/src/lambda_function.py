@@ -13,6 +13,6 @@ def lambda_handler(event, context):
         }
     game = json.loads(existing_game_serialized)
     return {
-        "statusCode": 200,
+        "statusCode": 404,
         "body": game,
     }

@@ -1,9 +1,12 @@
 import os
 import json
 import redis
+from itertools import cycle
 
 def lambda_handler(event, context):
     redis_hostname = os.environ['REDIS_HOSTNAME']
+    player_tokens_hash = 'player_tokens'
+    colors = ['black', 'red', 'yellow', 'blue', 'orange']
     live_game_key = 'live_game'
     rs = redis.StrictRedis(host=redis_hostname, port=6379, db=0)
     existing_game_serialized =  rs.get(live_game_key)
@@ -49,9 +52,6 @@ def lambda_handler(event, context):
     result['leaderboard'] = [{
         'player_id' : player.decode("utf-8"), 
         'score' : score
-        } for (player,score) in redis_db.zrange('scores',0,-1,withscores=True)[::-1]]
+        } for (player,score) in rs.zrange('scores',0,-1,withscores=True)[::-1]]
     
-    return {
-        "statusCode": 200,
-        "body": json.dumps(result),
-    }
+    return result
