@@ -147,4 +147,4 @@ while True:
     if sum(snake['is_alive'] for snake in game['snakes']) < 2 or game['round'] >= game['max_rounds']:
         update_scores(game)
         r.delete(live_game_key)
-sleep(1)
+    sleep(1)
