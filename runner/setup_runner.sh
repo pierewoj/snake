@@ -1,4 +1,4 @@
 sudo yum update
-sudo yum -y install python
+sudo yum install python redis
 pip install --upgrade pip
 pip install redis
