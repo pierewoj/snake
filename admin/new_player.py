@@ -19,6 +19,6 @@ hashed_token = hashlib.sha256(token.encode('utf-8')).hexdigest()
 print('uplodating token')
 r.hset(player_tokens_hash, player_name, hashed_token)
 print('successfully uploaded token for player='+player_name)
-print('token for ' + player_name
+print('token for ' + player_name)
 print(token)
 print('')
