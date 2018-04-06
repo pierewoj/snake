@@ -1,14 +1,14 @@
 # Snake
-This repo contains source for online multiplayer snake game. Each snake in game can be controlled via HTTP API calls. State of the game can be viewed by using static website: (https://4eynt6qa83.execute-api.eu-central-1.amazonaws.com/prod/)
+This repo contains source for online multiplayer snake game. Each snake in game can be controlled via HTTP API calls. State of the game can be viewed by using static website: https://4eynt6qa83.execute-api.eu-central-1.amazonaws.com/prod/
 
-# Architecture
+## Architecture
 This game is hosted on AWS using:
 * Lambda
 * API Gateway
 * ElastiCache (Redis)
 * S3
 
-# API 
+## API 
 The API of this game is quite simple and contains only 3 operations:
 - GET /game - returns current state of the game (positions of snakes, round rumber)
 - POST /decision - allows setting the direction of snake
