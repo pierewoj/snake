@@ -1,6 +1,8 @@
 # Snake
 This repo contains source for online multiplayer snake game. Each snake in game can be controlled via HTTP API calls. State of the game can be viewed by using static website: https://4eynt6qa83.execute-api.eu-central-1.amazonaws.com/prod/
 
+Game was created for entry-level programming workshops: https://github.com/pierewoj/warprog
+
 ## Architecture
 This game is hosted on AWS using:
 * Lambda
